@@ -52,6 +52,7 @@ if (opts.help) {
     'n                       Next in playlist',
     's                       Stop playback',
     'quit                    Quit',
+    't                       Display time location in ms (Debug only)',
     ''
   ].join('\n'));
 }
@@ -172,6 +173,10 @@ var ctrl = function(err, p, ctx) {
       playlist.shift();
     });
   };
+  
+  var getPosition = function() {
+    return p.getPosition();
+  };
 
   p.on('status', last(function(status, memo) {
     if (status.playerState !== 'IDLE') return;
@@ -248,7 +253,14 @@ var ctrl = function(err, p, ctx) {
     // Forward, one "seekCount" per press
     right: function() {
       changeCurrentSeekCounter(1);
+    },
+    
+    // Display current media position in ms (Debug only)
+    t: function(){
+      debug('Current media position: %o', getPosition());
     }
+    
+    // Display 
   };
 
   process.stdin.on('keypress', function(ch, key) {

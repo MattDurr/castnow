@@ -83,6 +83,7 @@ right   // seek forward (keep pressed / multiple press for faster seek)
 n       // next item in the playlist (only supported in launch-mode)
 s       // stop playback
 q       // quit
+t       // display media time location in ms (Debug only)
 
 ```
 
